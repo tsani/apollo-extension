@@ -1,0 +1,30 @@
+{
+  "name": "apollo-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start:firefox": "npx web-ext run",
+    "pack": "web-ext build -i src test *.json \"dist/*.js\" \"dist/*.map\" -i !manifest.json",
+    "build": "npm run build:compile",
+    "build:compile": "tsc",
+    "watch": "tsc --watch & npm run start:firefox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsani/apollo-extension.git"
+  },
+  "author": "Jacob Thomas Errington",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsani/apollo-extension/issues"
+  },
+  "homepage": "https://github.com/tsani/apollo-extension#readme",
+  "devDependencies": {
+    "typescript": "^4.0.3",
+    "web-ext": "^5.1.0",
+    "tsx-dom": "^0.9.0",
+    "ts-node": "^9.0.0",
+    "webextension-polyfill-ts": "^0.20.0"
+  }
+}
