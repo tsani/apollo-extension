@@ -6,9 +6,8 @@
   "scripts": {
     "start:firefox": "npx web-ext run",
     "pack": "web-ext build -i src test *.json \"dist/*.js\" \"dist/*.map\" -i !manifest.json",
-    "build": "npm run build:compile",
-    "build:compile": "tsc",
-    "watch": "tsc --watch & npm run start:firefox"
+    "build": "webpack",
+    "watch": "webpack --watch & npm run start:firefox"
   },
   "repository": {
     "type": "git",
@@ -25,6 +24,15 @@
     "web-ext": "^5.1.0",
     "tsx-dom": "^0.9.0",
     "ts-node": "^9.0.0",
-    "webextension-polyfill-ts": "^0.20.0"
+    "itiriri": "^2.0.1",
+    "webextension-polyfill-ts": "^0.20.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^1.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "@types/react": "^16.9.50",
+    "@types/react-dom": "^16.9.8"
   }
 }

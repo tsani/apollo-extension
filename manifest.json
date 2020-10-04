@@ -5,15 +5,30 @@
 
   "description": "Sends links to an Apollo server to download.",
 
+  "permissions": [
+    "activeTab",
+    "notifications",
+    "storage"
+  ],
+
   "icons": {
-    "48": "icons/border-48.png"
+    "64": "icon/apollo-64.png"
   },
 
-  "content_scripts": [
-    {
-      "matches": ["*://soundcloud.com/*"],
-      "js": ["dist/index.js"]
-    }
-  ]
+  "browser_action": {
+    "default_icon": "icon/apollo-32.png",
+    "default_title": "Apollo Download",
+    "default_popup": "html/popup.html",
+    "browser_style": true
+  },
 
+  "options_ui": {
+    "page": "html/settings.html"
+  },
+
+  "background": {
+    "scripts": [
+      "dist/background.js"
+    ]
+  }
 }

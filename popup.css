@@ -1,0 +1,96 @@
+#popup-content {
+    min-width: 3in;
+}
+
+.centering {
+    text-align: center;
+}
+
+button.download {
+    padding: 0.5em;
+    height: 100%;
+    border: none;
+    font-size: 120%;
+    border-radius: 3px;
+    background-color: inherit;
+}
+
+.job {
+    margin: 0.5em 1em;
+}
+
+.job > p {
+    margin: 0.2em 0;
+}
+
+.job-finished > p.status {
+    color: limegreen;
+}
+
+.job-errored > p.status {
+    color: indianred;
+}
+
+.job-running > p.status {
+    color: darkslateblue;
+}
+
+.job-number {
+    float: right;
+    color: slategrey;
+    font-size: 75%;
+    margin-left: 2em;
+}
+
+button.download:hover {
+    background-color: lightsteelblue;
+    transition: all 250ms linear;
+}
+button.download:active {
+    background-color: lightslategrey;
+}
+
+.close {
+    float: right;
+    margin-left: 1em;
+}
+
+.close:hover {
+    box-shadow: black 0 1px 5px;
+    transition: all 250ms;
+    transform: translateY(-1px);
+}
+
+.close:active {
+    transition: all 0s;
+    transform: translateY(0);
+    box-shadow: black 0 0 1px;
+}
+
+.gg-close-o {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 40px
+}
+.gg-close-o::after,
+.gg-close-o::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    top: 8px;
+    left: 3px
+}
+.gg-close-o::after {
+    transform: rotate(-45deg)
+}
