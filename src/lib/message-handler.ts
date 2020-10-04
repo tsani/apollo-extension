@@ -8,12 +8,12 @@ import {
     DownloadStarted,
     Message, SUBMIT_DOWNLOAD,
     SubmitDownload
-} from "./message";
-import {browser} from "webextension-polyfill-ts";
+} from './message';
+import {browser} from 'webextension-polyfill-ts';
 
 export type Handler<T> = (msg: T) => Promise<void>;
 
-async function noopHandler<T>(_msg: T): Promise<void> {}
+async function noopHandler<T>(_msg: T): Promise<void> { return; }
 
 export class MessageHandler {
     private handleSubmitDownload: Handler<SubmitDownload>;
@@ -49,12 +49,12 @@ export class MessageHandler {
 
     handle(msg: Message): Promise<void> {
         switch(msg.type) {
-            case DOWNLOAD_FINISHED: return this.handleDownloadFinished(msg);
-            case DOWNLOAD_STARTED: return this.handleDownloadStarted(msg);
-            case DOWNLOAD_ERROR: return this.handleDownloadError(msg);
-            case DOWNLOAD_PROGRESS: return this.handleDownloadProgress(msg);
-            case SUBMIT_DOWNLOAD: return this.handleSubmitDownload(msg);
-            case DELETE_JOB: return this.handleDeleteJob(msg);
+        case DOWNLOAD_FINISHED: return this.handleDownloadFinished(msg);
+        case DOWNLOAD_STARTED: return this.handleDownloadStarted(msg);
+        case DOWNLOAD_ERROR: return this.handleDownloadError(msg);
+        case DOWNLOAD_PROGRESS: return this.handleDownloadProgress(msg);
+        case SUBMIT_DOWNLOAD: return this.handleSubmitDownload(msg);
+        case DELETE_JOB: return this.handleDeleteJob(msg);
         }
         throw new Error('unreachable');
     }
@@ -62,7 +62,7 @@ export class MessageHandler {
     registerInBrowser(): void {
         browser.runtime.onMessage.addListener(async (msg, _sender) => {
             console.log('handling message');
-            await this.handle(msg as Message)
+            await this.handle(msg as Message);
         });
     }
 }

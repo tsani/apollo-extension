@@ -1,5 +1,5 @@
 import { JobStatus } from './job-status';
-import { DEFAULT_APOLLO_BASE_URL } from "./constants";
+import { DEFAULT_APOLLO_BASE_URL } from './constants';
 
 export const API_VERSION = 'v1';
 export const ADD_TRACKS_ROUTE = '/tracks/add/youtube-dl/async';
@@ -30,7 +30,7 @@ export default class ApolloClient {
         return await response.json();
     }
 
-    private postJSON = async (route: string, body: object) =>
+    private postJSON = async (route: string, body: unknown) =>
         fetch(this.apolloUrl(route), {
             method: 'POST',
             body: JSON.stringify(body),

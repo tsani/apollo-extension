@@ -1,4 +1,4 @@
-import {submitDownload} from "../lib/message-sender";
+import {submitDownload} from '../lib/message-sender';
 
 declare global {
     interface Window {

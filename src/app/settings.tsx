@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AsyncSetter } from "../lib/misc";
-import { TextField } from "../components/TextField";
-import { useSettings } from "../hooks/settings";
+import { AsyncSetter } from '../lib/misc';
+import { TextField } from '../components/TextField';
+import { useSettings } from '../hooks/settings';
 
 function asyncLens<T, TKey extends keyof T>(
     key: TKey,
@@ -16,7 +16,7 @@ function asyncLens<T, TKey extends keyof T>(
             return await setter((obj) => ({ ...obj, [key]: f(subValue)}));
         }
         return await setter((obj) => ({ ...obj, [key]: x }));
-    }
+    };
     return [subValue, subSetter];
 }
 
@@ -40,4 +40,4 @@ const App = () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<App/>, document.getElementById('app'));
-})
+});

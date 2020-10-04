@@ -1,5 +1,5 @@
-export type JOB_STATUS_RUNNING = "running";
-export const JOB_STATUS_RUNNING = "running";
+export type JOB_STATUS_RUNNING = 'running';
+export const JOB_STATUS_RUNNING = 'running';
 export interface JobRunning {
     progress: {
         done: number;
@@ -10,8 +10,8 @@ export interface JobRunningCase extends JobRunning {
     status: JOB_STATUS_RUNNING;
 }
 
-export type JOB_STATUS_ERROR = "failed";
-export const JOB_STATUS_ERROR = "failed";
+export type JOB_STATUS_ERROR = 'failed';
+export const JOB_STATUS_ERROR = 'failed';
 export interface JobError {
     error: string;
 }
@@ -19,8 +19,8 @@ export interface JobErrorCase extends JobError {
     status: JOB_STATUS_ERROR;
 }
 
-export type JOB_STATUS_FINISHED = "complete";
-export const JOB_STATUS_FINISHED = "complete";
+export type JOB_STATUS_FINISHED = 'complete';
+export const JOB_STATUS_FINISHED = 'complete';
 export interface JobFinished {
     result: string;
 }
@@ -39,9 +39,9 @@ interface JobStatusMatcher<T> {
 
 export const matchJobStatus = <T>(matcher: JobStatusMatcher<T>) => (status: JobStatus): T => {
     switch(status.status) {
-        case JOB_STATUS_ERROR: return matcher.onError(status);
-        case JOB_STATUS_FINISHED: return matcher.onFinished(status);
-        case JOB_STATUS_RUNNING: return matcher.onRunning(status);
+    case JOB_STATUS_ERROR: return matcher.onError(status);
+    case JOB_STATUS_FINISHED: return matcher.onFinished(status);
+    case JOB_STATUS_RUNNING: return matcher.onRunning(status);
     }
     throw new Error('unreachable');
-}
+};

@@ -1,4 +1,4 @@
-import {JOB_STATUS_ERROR, JOB_STATUS_FINISHED, JOB_STATUS_RUNNING} from "./job-status";
+import {JOB_STATUS_ERROR, JOB_STATUS_FINISHED, JOB_STATUS_RUNNING} from './job-status';
 
 export type Job = RunningJobCase | FinishedJobCase | ErroredJobCase;
 
@@ -43,10 +43,10 @@ export interface JobMatcher<T> {
 
 export const matchJob = <T>(matcher: JobMatcher<T>) => (job: Job): T => {
     switch (job.status) {
-        case JOB_STATUS_RUNNING: return matcher.onRunning(job);
-        case JOB_STATUS_ERROR: return matcher.onErrored(job);
-        case JOB_STATUS_FINISHED: return matcher.onFinished(job);
+    case JOB_STATUS_RUNNING: return matcher.onRunning(job);
+    case JOB_STATUS_ERROR: return matcher.onErrored(job);
+    case JOB_STATUS_FINISHED: return matcher.onFinished(job);
     }
     throw new Error('unreachable');
-}
+};
 

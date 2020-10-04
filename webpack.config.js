@@ -3,10 +3,10 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     entry: {
-        background: "./src/app/background.ts",
-        popup: "./src/app/popup.tsx",
-        content: "./src/app/download.ts",
-        settings: "./src/app/settings.tsx"
+        background: './src/app/background.ts',
+        popup: './src/app/popup.tsx',
+        content: './src/app/download.ts',
+        settings: './src/app/settings.tsx'
     },
     optimization: {
         splitChunks: {
@@ -15,8 +15,8 @@ module.exports = {
         }
     },
     output: {
-        filename: "[name].js",
-        path: __dirname + "/dist"
+        filename: '[name].js',
+        path: __dirname + '/dist'
     },
     plugins: [
         // new CleanWebpackPlugin(),
@@ -34,15 +34,15 @@ module.exports = {
         //     }
         // }
     ],
-    devtool: "source-map",
+    devtool: 'source-map',
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json"],
+        extensions: ['.ts', '.tsx', '.js', '.json'],
         alias: {
-            "webextension-polyfill-ts": path.resolve(path.join(__dirname, "node_modules", "webextension-polyfill-ts"))
+            'webextension-polyfill-ts': path.resolve(path.join(__dirname, 'node_modules', 'webextension-polyfill-ts'))
         },
     },
     node: {
-        fs: "empty"
+        fs: 'empty'
     },
     module: {
         rules: [
@@ -55,10 +55,10 @@ module.exports = {
             //     ]
             // },
             // All files with a ".ts" or ".tsx" extension will be handled by "awesome-typescript-loader".
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
 
             // All output ".js" files will have any sourcemaps re-processed by "source-map-loader".
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
         ]
     },
 
