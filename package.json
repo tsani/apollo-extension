@@ -5,10 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "start:firefox": "npx web-ext run",
-    "pack": "web-ext build -i src test *.json \"dist/*.js\" \"dist/*.map\" -i !manifest.json",
+    "pack": "web-ext build --overwrite-dest -i src \"*.iml\" test *.json \"dist/*.map\" -i !manifest.json",
     "build": "webpack",
     "watch": "webpack --watch & npm run start:firefox",
-    "sign": "WEB_EXT_API_KEY=\"$(pass show firefox/jwt-issuer)\" WEB_EXT_API_SECRET=\"$(pass show firefox/jwt-secret)\" web-ext sign"
+    "sign": "WEB_EXT_API_KEY=\"$(pass show firefox/jwt-issuer)\" WEB_EXT_API_SECRET=\"$(pass show firefox/jwt-secret)\" web-ext sign",
+    "clean": "rm -rf dist",
+    "dist": "npm run clean && npm run build && npm run pack && npm run sign"
   },
   "repository": {
     "type": "git",
