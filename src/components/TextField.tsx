@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Setter } from '../lib/misc';
 
-export const TextField = ({
+const TextField = ({
     value,
     setValue,
     ...props
@@ -20,3 +20,5 @@ export const TextField = ({
         />
     );
 };
+
+export default TextField;

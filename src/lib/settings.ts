@@ -5,13 +5,15 @@ import { DEFAULT_APOLLO_BASE_URL } from './constants';
 export const SETTINGS_KEY = 'settings';
 export const SETTINGS_STORAGE: StorageArea = browser.storage.local;
 
-export const DEFAULT_SETTINGS: Settings = {
-    apolloBaseUrl: DEFAULT_APOLLO_BASE_URL,
-};
-
 export interface Settings {
     apolloBaseUrl: string;
+    enqueueOnFinish: boolean;
 }
+
+export const DEFAULT_SETTINGS: Settings = {
+    apolloBaseUrl: DEFAULT_APOLLO_BASE_URL,
+    enqueueOnFinish: true,
+};
 
 export const getSettings = async (): Promise<Settings | undefined> => {
     const { [SETTINGS_KEY]: settings } = await SETTINGS_STORAGE.get(SETTINGS_KEY);

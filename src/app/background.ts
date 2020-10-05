@@ -52,6 +52,8 @@ class Background {
 
     async install() {
         this.jobManager.onJobFinished = async (job) => {
+            if(this.settings.enqueueOnFinish)
+                await this.apolloClient.enqueueTrack([job.result]);
             await notifyFinished({ tag: job.tag, id: job.id });
         };
 
