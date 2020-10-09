@@ -1,7 +1,10 @@
 export type AsyncSetter<T> = (x: T | ((prev: T) => T)) => Promise<void>;
 export type Setter<T> = (x: T | ((prev: T) => T)) => void;
 
-/* Indexes and object with a key and constructs a setter for that key that rebuilds the object. */
+/* Indexes and object with a key and constructs a setter for that key that rebuilds the object.
+ * WARNING: this will not work correctly if T is a function type,
+ * but there is no way to express this constraint in the type system.
+ */
 export function asyncLens<T, TKey extends keyof T>(
     key: TKey,
     value: T,
