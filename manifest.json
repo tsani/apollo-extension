@@ -6,6 +6,7 @@
   "description": "Sends links to an Apollo server to download.",
 
   "permissions": [
+    "<all_urls>",
     "activeTab",
     "notifications",
     "storage"
