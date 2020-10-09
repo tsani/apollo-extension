@@ -15,7 +15,7 @@ export interface RunningJobCase extends RunningJob {
 export const injectRunning = (job: RunningJob): RunningJobCase => ({ status: JOB_STATUS_RUNNING, ...job });
 
 export interface FinishedJob extends BasicJob {
-    result: string;
+    result: string[];
 }
 export interface FinishedJobCase extends FinishedJob {
     status: JOB_STATUS_FINISHED;
@@ -23,7 +23,10 @@ export interface FinishedJobCase extends FinishedJob {
 export const injectFinished = (job: FinishedJob): FinishedJobCase => ({ status: JOB_STATUS_FINISHED, ...job });
 
 export interface ErroredJob extends BasicJob {
-    error: string;
+    error: {
+        type: string;
+        message: string;
+    };
 }
 export interface ErroredJobCase extends ErroredJob {
     status: JOB_STATUS_ERROR;

@@ -53,12 +53,12 @@ class Background {
     async install() {
         this.jobManager.onJobFinished = async (job) => {
             if(this.settings.enqueueOnFinish)
-                await this.apolloClient.enqueueTrack([job.result]);
+                await this.apolloClient.enqueueTrack(job.result);
             await notifyFinished({ tag: job.tag, id: job.id });
         };
 
         this.jobManager.onJobErrored = async (job) => {
-            await notifyError({ tag: job.tag, message: job.error });
+            await notifyError({ tag: job.tag, message: job.error.message });
         };
 
         this.messageHandler.registerInBrowser();

@@ -13,7 +13,10 @@ export interface JobRunningCase extends JobRunning {
 export type JOB_STATUS_ERROR = 'failed';
 export const JOB_STATUS_ERROR = 'failed';
 export interface JobError {
-    error: string;
+    error: {
+        type: string;
+        message: string;
+    };
 }
 export interface JobErrorCase extends JobError {
     status: JOB_STATUS_ERROR;
@@ -22,7 +25,7 @@ export interface JobErrorCase extends JobError {
 export type JOB_STATUS_FINISHED = 'complete';
 export const JOB_STATUS_FINISHED = 'complete';
 export interface JobFinished {
-    result: string;
+    result: string[];
 }
 export interface JobFinishedCase extends JobFinished{
     status: JOB_STATUS_FINISHED;
