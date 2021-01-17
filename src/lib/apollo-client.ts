@@ -1,9 +1,14 @@
 import { JobStatus } from './job-status';
 import { DEFAULT_APOLLO_BASE_URL } from './constants';
+import {
+    ENQUEUE_AT_START,
+    EnqueueMode,
+    formatEnqueueMode,
+} from './enqueue-mode';
 
 export const API_VERSION = 'v1';
 export const ADD_TRACKS_ROUTE = '/tracks/add/youtube-dl/async';
-export const PLAYLIST_ROUTE = '/playlist'
+export const PLAYLIST_ROUTE = '/playlist';
 
 export interface AddTrack {
     jobId: number;
@@ -17,18 +22,12 @@ export default class ApolloClient {
         this.baseUrl = baseUrl;
     }
 
-    async addTrack(
-        urlToDownload: string,
-        path: string,
-    ): Promise<AddTrack> {
+    async addTrack(urlToDownload: string, path: string): Promise<AddTrack> {
         const request: { url: string; path: string } = {
             url: urlToDownload,
             path: path,
         };
-        const response = await this.sendJSON(
-            ADD_TRACKS_ROUTE,
-            request,
-        );
+        const response = await this.sendJSON(ADD_TRACKS_ROUTE, request);
         return await response.json();
     }
 
@@ -42,14 +41,19 @@ export default class ApolloClient {
        Pass in an array of track paths (a track path is the result of a download job finishing).
        Returns the playlist positions of the added tracks, in the same order that the track paths were specified.
      */
-    async enqueueTrack(trackPaths: string[]): Promise<number[]> {
+    async enqueueTrack(
+        trackPaths: string[],
+        enqueueMode: EnqueueMode = ENQUEUE_AT_START,
+    ): Promise<number[]> {
         const response = await this.sendJSON(
-            `${PLAYLIST_ROUTE}?end_1`,
+            `${PLAYLIST_ROUTE}?position=${formatEnqueueMode(enqueueMode)}`,
             trackPaths,
             'PUT',
         );
-        if(!response.ok)
-            throw new Error(`failed to enqueue track(s) ${trackPaths.join(', ')}`);
+        if (!response.ok)
+            throw new Error(
+                `failed to enqueue track(s) ${trackPaths.join(', ')}`,
+            );
         return await response.json();
     }
 
