@@ -5,7 +5,7 @@ module.exports = {
     entry: {
         background: './src/app/background.ts',
         popup: './src/app/popup.tsx',
-        content: './src/app/download.ts',
+        download: './src/app/download.ts',
         settings: './src/app/settings.tsx'
     },
     optimization: {

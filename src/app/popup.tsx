@@ -67,7 +67,7 @@ const App = () => {
         console.log('button clicked!');
         try {
             return void (await browser.tabs.executeScript(undefined, {
-                file: '/dist/content.js',
+                file: '/dist/download.js',
             }));
         } catch (e) {
             console.error('failed to execute download', e);
