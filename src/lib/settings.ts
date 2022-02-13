@@ -8,11 +8,15 @@ export const SETTINGS_STORAGE: StorageArea = browser.storage.local;
 export interface Settings {
     apolloBaseUrl: string;
     enqueueOnFinish: boolean;
+    saveOnFinish: boolean;
+    playlistTag: string;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
     apolloBaseUrl: DEFAULT_APOLLO_BASE_URL,
     enqueueOnFinish: true,
+    saveOnFinish: true,
+    playlistTag: 'apollo-web',
 };
 
 export const getSettings = async (): Promise<Settings | undefined> => {

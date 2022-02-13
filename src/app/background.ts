@@ -23,12 +23,20 @@ const notifyError = async (downloadError: DownloadError) => {
     });
 };
 
-const notifyFinished = async (downloadFinished: DownloadFinished) => {
+interface NotifyFinished extends DownloadFinished {
+    playlistName?: string
+}
+
+const notifyFinished = async (msg: NotifyFinished) => {
     console.info('notifier: finished');
+    const lines = [`Finished downloading: ${msg.tag}`];
+    if (msg.playlistName) {
+        lines.push(`Saved playlist: ${msg.playlistName}`);
+    }
     await browser.notifications.create({
         type: 'basic',
         title: 'Apollo Download Finished',
-        message: `Finished downloading: ${downloadFinished.tag}`,
+        message: lines.join('\n'),
     });
 };
 
@@ -60,7 +68,13 @@ class Background {
         this.jobManager.onJobFinished = async (job) => {
             if (this.settings.enqueueOnFinish)
                 await this.apolloClient.enqueueTrack(job.result);
-            await notifyFinished({ tag: job.tag, id: job.id });
+
+            let playlistName: undefined | string = undefined;
+            if (this.settings.saveOnFinish) {
+                playlistName = await this.apolloClient.savePlaylist(this.settings.playlistTag);
+            }
+
+            await notifyFinished({ tag: job.tag, id: job.id, playlistName });
         };
 
         this.jobManager.onJobErrored = async (job) => {
